@@ -129,14 +129,14 @@ def get_rate(expiry, show=True):
     )
     try:
         rates_ = pd.read_pickle(tmpf)
-        rates = list(rates_.iloc[0])[1:11]
+        rates = list(rates_.iloc[0])[1:12]
     except:
         rates = None
     if not rates:
         url_ = f'https://home.treasury.gov/resource-center/data-chart-center/interest-rates/daily-treasury-rates.csv/all/{datetime.now().strftime("%Y%m")}?type=daily_treasury_yield_curve&field_tdr_date_value_month={datetime.now().strftime("%Y%m")}&page&_format=csv'
         # print(url_)
         rates_ = pd.read_csv(url_)
-        assert list(rates_.columns)[1:11] == [
+        assert list(rates_.columns)[1:12] == [
             "1 Mo",
             "1.5 Month"
             "2 Mo",
@@ -149,7 +149,7 @@ def get_rate(expiry, show=True):
             "5 Yr",
             "7 Yr",
         ], "problem with treasury rates site, pass rate or limit price manually"
-        rates = list(rates_.iloc[0])[1:11]
+        rates = list(rates_.iloc[0])[1:12]
         rates_.to_pickle(tmpf)
     assert rates != None, "problem with rate calculation, pass rate or limit manually"
     rate = rates[
