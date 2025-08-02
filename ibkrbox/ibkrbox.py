@@ -138,6 +138,7 @@ def get_rate(expiry, show=True):
         rates_ = pd.read_csv(url_)
         assert list(rates_.columns)[1:11] == [
             "1 Mo",
+            "1.5 Month"
             "2 Mo",
             "3 Mo",
             "4 Mo",
@@ -155,7 +156,7 @@ def get_rate(expiry, show=True):
         [
             n
             for n, i in enumerate(
-                [30, 60, 90, 120, 180, 365 * 1, 365 * 2, 365 * 3, 365 * 5, 365 * 7]
+                [30, 45, 60, 90, 120, 180, 365 * 1, 365 * 2, 365 * 3, 365 * 5, 365 * 7]
             )
             if i > days
         ][0]
